@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+using namespace std;
+const int E6=1e6+7;
+int sieve[E6]={0};
+vector<int> primes;
+void generatePrimes(int limit){
+    for(int i=2;i<=limit;i++){
+        sieve[i]=1;         //till the limit make all elements as 1
+    }
+    for(int i=2;i*i<=limit;i++){
+        if(sieve[i]==1){
+            for(int j=i*i;j<=limit;j=j+i){
+                sieve[j]=0;             //If it divisble by for any i,It is Non-prime(so make as 0)
+            }
+        }
+    }
+    for(int i=2;i<=limit;i++){
+        if(sieve[i]==1)             //In a sieve array,The corresponding value for a given Index is "1" ,It is a prime
+            primes.push_back(i);
+    }
+}
+int main(){
+    int N;
+    cin>>N;
+    generatePrimes(N);
+    for(auto it:primes){
+        cout<<it<<" ";
+    }
+}
