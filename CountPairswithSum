@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int n,sum;
+    cin>>n>>sum;
+    vector<int> vec;
+    for(int i=0;i<n;i++){
+        int x;
+        cin>>x;
+        vec.push_back(x);
+    }
+    map<int,int> mpp;
+    int cnt=0;
+    for(int i=0;i<n;i++){
+        if(mpp.find(sum-vec[i])!=mpp.end()){
+            cnt+=mpp[sum-vec[i]];
+        }
+        mpp[vec[i]]+=1;
+    }
+    cout<<cnt;
+    return 0;
+}
