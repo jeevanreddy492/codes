@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int n;
+    cin>>n;
+    int m[n][n];
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            cin>>m[i][j];
+        }
+    } //Read Elements
+    vector<int> vec;
+    int top=0,left=0,bottom=r-1,right=c-1;
+    while(top<=bottom&&left<=right){
+        for(int i=left;i<=right;i++){
+            vec.push_back(m[top][i]);
+        }
+        top++;
+        for(int i=top;i<=bottom;i++){
+            vec.push_back(m[i][right]);
+        }
+        right--;
+        if(top<=bottom){
+            for(int i=right;i>=left;i--){
+                vec.push_back(m[bottom][i]);
+            }
+            bottom--;
+        }
+        if(left<=right){
+            for(int i=bottom;i>=top;i--){
+                vec.push_back(m[i][left]);
+            }
+            left++;
+        }
+    }
+    for(auto it:vec){
+        cout<<it<<" ";
+    }
+    return 0;
+}
