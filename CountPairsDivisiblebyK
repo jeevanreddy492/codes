@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int n,k;
+    cin>>n>>k;
+    vector<int> vec;
+    for(int i=0;i<n;i++){
+        int x;
+        cin>>x;
+        vec.push_back(x);
+    }
+    int a[k]={0};
+    for(int i=0;i<n;i++){
+        int rem=vec[i]%k;
+        a[rem]+=1;
+    }
+    int cnt=a[0]*(a[0]-1)/2;
+    for(int i=1;i<=(k/2)&&i!=(k-i);i++){
+        cnt+=a[i]*a[k-i];
+    }
+    if(k%2==0){
+        cnt+=a[k/2]*(a[k/2]-1)/2;
+    }
+    cout<<cnt;
+    
+}
